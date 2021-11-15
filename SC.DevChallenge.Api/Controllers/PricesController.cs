@@ -33,7 +33,7 @@ namespace SC.DevChallenge.Api.Controllers
             if (ret != null)
                 return Content(ret.ToString());
             else
-                return BadRequest();
+                return StatusCode(404);
         }
     }
 }

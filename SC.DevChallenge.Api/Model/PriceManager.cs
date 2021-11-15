@@ -40,9 +40,6 @@ namespace SC.DevChallenge.Api.Model
                 && !string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true &&
                 period != -1 ? x.Period == period : true).ToList();
             var x = db.PriceInfos[3];
-            Console.WriteLine(!string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true);
-            Console.WriteLine(!string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true);
-            Console.WriteLine(!string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true);
             foreach (var info in priceInfos)
                 sum += info.Price;
             if (priceInfos.Count != 0)
@@ -51,11 +48,7 @@ namespace SC.DevChallenge.Api.Model
                     date = DateFromPeriod(period),
                     price = (float)Math.Round((sum / priceInfos.Count), 2)
                 };
-            else return new Response()
-            {
-                date = DateFromPeriod(period),
-                price = -1
-            };
+            else return null;
         }
         public static Response GetResponse(string portfolio, string owner, string instrument, int time)
         {
@@ -70,9 +63,6 @@ namespace SC.DevChallenge.Api.Model
                 && !string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true &&
                 period != -1 ? x.Period == period : true).ToList();
             var x = db.PriceInfos[3];
-            Console.WriteLine(!string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true);
-            Console.WriteLine(!string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true);
-            Console.WriteLine(!string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true);
             foreach (var info in priceInfos)
                 sum += info.Price;
             if (priceInfos.Count != 0)
@@ -81,11 +71,7 @@ namespace SC.DevChallenge.Api.Model
                     date = DateFromPeriod(period),
                     price = (float)Math.Round((sum / priceInfos.Count), 2)
                 };
-            else return new Response()
-            {
-                date = DateFromPeriod(period),
-                price = -1
-            };
+            else return null;
         }
     }
 }
