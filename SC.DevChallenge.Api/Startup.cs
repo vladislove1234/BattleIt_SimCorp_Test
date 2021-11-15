@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SC.DevChallenge.Api.Model.Services;
 
 namespace SC.DevChallenge.Api
 {
@@ -21,6 +22,7 @@ namespace SC.DevChallenge.Api
             services.AddSwaggerGen(c =>
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SC.DevChallenge.Api", Version = "v1" })
             );
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +38,7 @@ namespace SC.DevChallenge.Api
 
             app.UseAuthorization();
 
+            
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }

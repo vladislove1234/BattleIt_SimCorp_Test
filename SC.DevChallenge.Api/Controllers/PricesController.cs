@@ -1,4 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using SC.DevChallenge.Api.Model;
+using SC.DevChallenge.Api.Model.Entities;
+using SC.DevChallenge.Api.Model.Services;
 
 namespace SC.DevChallenge.Api.Controllers
 {
@@ -6,10 +12,26 @@ namespace SC.DevChallenge.Api.Controllers
     [Route("api/[controller]")]
     public class PricesController : ControllerBase
     {
+        private ILogger _logger;
         [HttpGet("average")]
-        public string Average()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Response))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult Average([FromQuery] string portfolio, [FromQuery] string owner, [FromQuery] string instrument, [FromQuery] DateTime datetime)//
         {
-            return "I'm dummy controller";
+            var ret = PriceManager.GetResponse(portfolio, owner, instrument, datetime);
+            if (ret != null)
+                return Content(ret.ToString());
+            else
+                return BadRequest();
+        }
+        [HttpGet("avarage_for_period")]
+        public ActionResult AverageForPeriod([FromQuery] string portfolio, [FromQuery] string owner, [FromQuery] string instrument, [FromQuery] int period)//
+        {
+            var ret = PriceManager.GetResponse(portfolio, owner, instrument, period);
+            if (ret != null)
+                return Content(ret.ToString());
+            else
+                return BadRequest();
         }
     }
 }

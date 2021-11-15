@@ -8,4 +8,14 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Model\" />
+    <None Remove="Model\Entities\" />
+    <None Remove="Model\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Model\Entities\" />
+    <Folder Include="Model\Services\" />
+  </ItemGroup>
 </Project>
