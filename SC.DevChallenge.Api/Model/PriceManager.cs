@@ -11,6 +11,8 @@ namespace SC.DevChallenge.Api.Model
         public static readonly DateTime StartDate = new DateTime(2018,1,1,0,0,0,0);
         public static int PeriodFromDate(DateTime date)
         {
+            if (date < StartDate)
+                return -1;
             var currDate = StartDate.AddSeconds(timePeriod);
             int period = 0;
             while(currDate < date)
@@ -29,8 +31,7 @@ namespace SC.DevChallenge.Api.Model
         }
         public static Response GetResponse(string portfolio, string owner, string instrument, DateTime time)
         {
-            var db = new PriceInfosDB();
-            int period = -1;
+           /* int period = -1;
             if (time > StartDate)
             period = PeriodFromDate(time);
             double sum = 0;
@@ -39,7 +40,6 @@ namespace SC.DevChallenge.Api.Model
                 !string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true
                 && !string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true &&
                 period != -1 ? x.Period == period : true).ToList();
-            var x = db.PriceInfos[3];
             foreach (var info in priceInfos)
                 sum += info.Price;
             if (priceInfos.Count != 0)
@@ -48,11 +48,11 @@ namespace SC.DevChallenge.Api.Model
                     date = DateFromPeriod(period),
                     price = (float)Math.Round((sum / priceInfos.Count), 2)
                 };
-            else return null;
+            else */return null;
         }
         public static Response GetResponse(string portfolio, string owner, string instrument, int time)
         {
-            var db = new PriceInfosDB();
+            /*var db = new FinanceDBContext();
             if (time < 0)
                 return null;
             int period = time;
@@ -62,7 +62,6 @@ namespace SC.DevChallenge.Api.Model
                 !string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true
                 && !string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true &&
                 period != -1 ? x.Period == period : true).ToList();
-            var x = db.PriceInfos[3];
             foreach (var info in priceInfos)
                 sum += info.Price;
             if (priceInfos.Count != 0)
@@ -71,7 +70,7 @@ namespace SC.DevChallenge.Api.Model
                     date = DateFromPeriod(period),
                     price = (float)Math.Round((sum / priceInfos.Count), 2)
                 };
-            else return null;
+            else */return null;
         }
     }
 }

@@ -6,16 +6,39 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Model\" />
     <None Remove="Model\Entities\" />
     <None Remove="Model\Services\" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Data\" />
+    <None Remove="Model\Interfaces\" />
+    <None Remove="BattleIt_Tests\obj\Debug\net5.0\BattleIt_Tests.csproj.AssemblyReference.cache" />
+    <None Remove="BattleIt_Tests\obj\BattleIt_Tests.csproj.nuget.g.props" />
+    <None Remove="BattleIt_Tests\obj\BattleIt_Tests.csproj.nuget.g.targets" />
+    <None Remove="BattleIt_Tests\obj\project.nuget.cache" />
+    <None Remove="BattleIt_Tests\obj\Debug\net5.0\BattleIt_Tests.csproj.AssemblyReference.cache" />
+    <None Remove="BattleIt_Tests\obj\BattleIt_Tests.csproj.nuget.g.props" />
+    <None Remove="BattleIt_Tests\obj\project.nuget.cache" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Model\Entities\" />
     <Folder Include="Model\Services\" />
+    <Folder Include="Data\" />
+    <Folder Include="Model\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="BattleIt_Tests\UnitTest1.cs" />
+    <Compile Remove="BattleIt_Tests\UnitTest1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="BattleIt_Tests\obj\project.assets.json" />
+    <Content Remove="BattleIt_Tests\obj\BattleIt_Tests.csproj.nuget.dgspec.json" />
+    <Content Remove="BattleIt_Tests\obj\project.assets.json" />
+    <Content Remove="BattleIt_Tests\obj\BattleIt_Tests.csproj.nuget.dgspec.json" />
   </ItemGroup>
 </Project>

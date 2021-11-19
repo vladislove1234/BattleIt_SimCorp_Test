@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SC.DevChallenge.Api.Model.Interfaces;
 using SC.DevChallenge.Api.Model.Services;
 
 namespace SC.DevChallenge.Api
@@ -23,6 +24,7 @@ namespace SC.DevChallenge.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SC.DevChallenge.Api", Version = "v1" })
             );
             services.AddLogging();
+            services.AddSingleton<IDataStorage, FileDataStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

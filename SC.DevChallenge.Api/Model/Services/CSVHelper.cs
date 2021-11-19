@@ -7,18 +7,12 @@ using SC.DevChallenge.Api.Model.Entities;
 
 namespace SC.DevChallenge.Api.Model.Services
 {
-    public class PriceInfosDB
+    public class CSVHelper
     {
-        private const string _dbPath = "Input/data.csv";
-        public List<PriceInfo> PriceInfos { get; set; }
-        public PriceInfosDB()
-        {
-            PriceInfos = GetPriceInfos();
-        }
-        private List<PriceInfo> GetPriceInfos()
+        public List<PriceInfo> GetPriceInfos(string path)
         {
             var list = new List<PriceInfo>();
-            using (var reader = new StreamReader(_dbPath))
+            using (var reader = new StreamReader(path))
             {
                 reader.ReadLine();
                 while (!reader.EndOfStream)
