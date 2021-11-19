@@ -31,7 +31,7 @@ namespace SC.DevChallenge.Api.Model
         }
         public static Response GetResponse(string portfolio, string owner, string instrument, DateTime time)
         {
-           /* int period = -1;
+            /*int period = -1;
             if (time > StartDate)
             period = PeriodFromDate(time);
             double sum = 0;

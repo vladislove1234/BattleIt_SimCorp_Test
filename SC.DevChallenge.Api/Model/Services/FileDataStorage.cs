@@ -12,7 +12,11 @@ namespace SC.DevChallenge.Api.Model.Services
             var csvHelper = new CSVHelper();
             _priceInfos = csvHelper.GetPriceInfos("./Input/data.csv");
         }
-
+        public FileDataStorage(string path)
+        {
+            var csvHelper = new CSVHelper();
+            _priceInfos = csvHelper.GetPriceInfos(path);
+        }
         public List<PriceInfo> PriceInfos
         {
             get
