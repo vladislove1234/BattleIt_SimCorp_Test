@@ -9,22 +9,16 @@ namespace SC.DevChallenge.Api.Model
     {
         public static int timePeriod = 10000;
         public static readonly DateTime StartDate = new DateTime(2018,1,1,0,0,0,0);
-        public static int PeriodFromDate(DateTime date)
+        public static int PeriodFromDate(DateTime date)// Returns Period from date
         {
             if (date < StartDate)
                 return -1;
-            var currDate = StartDate.AddSeconds(timePeriod);
-            int period = 0;
-            while(currDate < date)
-            {
-                period++;
-                currDate = currDate.AddSeconds(timePeriod);
-            }
-            return period;
+            var diff = (date - StartDate).TotalSeconds;
+            return (int)(diff / timePeriod);
         }
-        public static DateTime DateFromPeriod(int period)
+        public static DateTime DateFromPeriod(int period)// returns Date from period
         {
-            if (period >= 0)
+            if (period > 0)
                 return StartDate.AddSeconds(timePeriod * period);
             else
                 return StartDate;

@@ -6,7 +6,7 @@ using SC.DevChallenge.Api.Model.Interfaces;
 
 namespace SC.DevChallenge.Api.Model.Services
 {
-    public class FileDataStorage : IDataStorage
+    public class FileDataStorage : IDataStorage//Realisation of DataStorage for reading data from file
     {
         public FileDataStorage()
         {
@@ -37,6 +37,14 @@ namespace SC.DevChallenge.Api.Model.Services
                 (!string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true)
                 && (!string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true) &&
                 (period != -1 ? x.Period == period : true)).ToList();
+        }
+
+        public List<PriceInfo> GetPriceinfosFromPIIT(string portfolio, string owner, string instrument, int periodStart, int periodEnd)
+        {
+            return PriceInfos.Where(x => (!string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true) &&
+                (!string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true)
+                && (!string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true) &&
+                (periodStart < periodEnd ? (x.Period >= periodStart && x.Period <= periodEnd): true)).ToList();
         }
     }
 }
