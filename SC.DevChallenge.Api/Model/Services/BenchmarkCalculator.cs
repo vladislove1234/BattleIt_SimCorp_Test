@@ -57,6 +57,7 @@ namespace SC.DevChallenge.Api.Model.Services
                     double avrPrice = 0;
                     for(int i = 0; startTs + tsDelta + i < startTs + tsDelta + tsGroup; i++)//calculating all benchmarks
                     {
+                        Console.WriteLine(startTs + tsDelta + i);
                         var infos = _prices.GetPriceinfosFromPIIT(portfolio, "", "", startTs + tsDelta + i);// getting all price infos in current Time slot
                         double? currTsAvrPrice = CalculatePrice(infos);
                         if(currTsAvrPrice != null)

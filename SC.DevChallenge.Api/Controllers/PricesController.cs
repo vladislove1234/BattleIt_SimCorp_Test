@@ -100,11 +100,13 @@ namespace SC.DevChallenge.Api.Controllers
         [HttpGet("aggregate")]
         public IActionResult Aggregate([FromQuery] string portfolio, [FromQuery] DateTime startDate, [FromQuery] DateTime endDate, int intervals)//returns benchmarks for intervals
         {
-            if (string.IsNullOrEmpty(portfolio) || startDate == DateTime.MinValue || endDate == DateTime.MinValue || intervals <= 0)
+            if (string.IsNullOrEmpty(portfolio) || startDate == DateTime.MinValue || endDate == DateTime.MinValue || intervals <= 0 || startDate > endDate)
                 return StatusCode(404);
             int startTs = PriceManager.PeriodFromDate(startDate),//getting start timeslot
                 endTs = PriceManager.PeriodFromDate(endDate);// and end timeslot
             var responses = _benchmarkCalculator.CalculateAggregateBenchmark(portfolio, startTs, endTs, intervals);
+            if (responses.Where(x => x.price != 0).FirstOrDefault() == null)
+                return StatusCode(404);
             return new JsonResult(responses);
         }
     }
