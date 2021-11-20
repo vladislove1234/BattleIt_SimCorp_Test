@@ -29,10 +29,7 @@ namespace SC.DevChallenge.Api.Controllers
                 return StatusCode(404);
             int period = PriceManager.PeriodFromDate(datetime);
             double sum = 0;
-            var RequestedPriceInfos = _dataStorage.PriceInfos.Where(x => x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) &&
-                x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) 
-                && x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) &&
-                x.Period == period).ToList();
+            var RequestedPriceInfos = _dataStorage.GetPriceinfosFromPIIT(portfolio, owner, instrument, period);
             RequestedPriceInfos.ForEach(x => sum += x.Price);
             if (RequestedPriceInfos.Count != 0)
                 return Content(new Response()
@@ -43,21 +40,21 @@ namespace SC.DevChallenge.Api.Controllers
             else return StatusCode(404);
         }
         [HttpGet("avarage_for_period")]
-        public ActionResult AverageForPeriod([FromQuery] string portfolio, [FromQuery] string owner, [FromQuery] string instrument, [FromQuery] int period)//
+        public ActionResult AverageForPeriod([FromQuery] string portfolio, [FromQuery] string owner, [FromQuery] string instrument, [FromQuery] DateTime? time)//
         {
-            if (period < 0)
-                return StatusCode(404);
+            int period;
+            if (time == null)
+                period = -1;
+            else
+                period = PriceManager.PeriodFromDate((DateTime)time);
             double sum = 0;
-            var priceInfos = _dataStorage.PriceInfos.Where(x => !string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true &&
-                !string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true
-                && !string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true &&
-                period != -1 ? x.Period == period : true).ToList();
-            foreach (var info in priceInfos)
+            var priceInfos = _dataStorage.GetPriceinfosFromPIIT(portfolio, owner, instrument, period);
+                foreach (var info in priceInfos)
                 sum += info.Price;
             if (priceInfos.Count != 0)
                 return Content(new Response()
                 {
-                    date = PriceManager.DateFromPeriod(period),
+                    date = PriceManager.DateFromPeriod((int)period),
                     price = (float)Math.Round((sum / priceInfos.Count), 2)
                 }.ToString());
             else return StatusCode(404);

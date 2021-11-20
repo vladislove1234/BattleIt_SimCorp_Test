@@ -29,48 +29,6 @@ namespace SC.DevChallenge.Api.Model
             else
                 return StartDate;
         }
-        public static Response GetResponse(string portfolio, string owner, string instrument, DateTime time)
-        {
-            /*int period = -1;
-            if (time > StartDate)
-            period = PeriodFromDate(time);
-            double sum = 0;
-            int count = 0;
-            var priceInfos = db.PriceInfos.Where(x => !string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true &&
-                !string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true
-                && !string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true &&
-                period != -1 ? x.Period == period : true).ToList();
-            foreach (var info in priceInfos)
-                sum += info.Price;
-            if (priceInfos.Count != 0)
-                return new Response()
-                {
-                    date = DateFromPeriod(period),
-                    price = (float)Math.Round((sum / priceInfos.Count), 2)
-                };
-            else */return null;
-        }
-        public static Response GetResponse(string portfolio, string owner, string instrument, int time)
-        {
-            /*var db = new FinanceDBContext();
-            if (time < 0)
-                return null;
-            int period = time;
-            double sum = 0;
-            int count = 0;
-            var priceInfos = db.PriceInfos.Where(x => !string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true &&
-                !string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true
-                && !string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true &&
-                period != -1 ? x.Period == period : true).ToList();
-            foreach (var info in priceInfos)
-                sum += info.Price;
-            if (priceInfos.Count != 0)
-                return new Response()
-                {
-                    date = DateFromPeriod(period),
-                    price = (float)Math.Round((sum / priceInfos.Count), 2)
-                };
-            else */return null;
-        }
+        
     }
 }

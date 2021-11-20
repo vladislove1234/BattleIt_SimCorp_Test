@@ -7,5 +7,6 @@ namespace SC.DevChallenge.Api.Model.Interfaces
     public interface IDataStorage
     {
         List<PriceInfo> PriceInfos { get; set; }
+        List<PriceInfo> GetPriceinfosFromPIIT(string portfolio, string owner, string instrument, int period);
     }
 }

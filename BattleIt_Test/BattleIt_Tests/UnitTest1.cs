@@ -20,5 +20,13 @@ namespace BattleIt_Tests
             var model = Assert.IsAssignableFrom<Response>(response);
             Assert.Equal(200, model.price);
         }
+        public async Task RequestTest()
+        {
+            PriceInfo x = new PriceInfo() { Portfolio = "" };
+            /*(x => (!string.IsNullOrEmpty(portfolio) ? x.Portfolio.Equals(portfolio, StringComparison.CurrentCultureIgnoreCase) : true) &&
+                (!string.IsNullOrEmpty(owner) ? x.InstrumentOwner.Equals(owner, StringComparison.CurrentCultureIgnoreCase) : true)
+                && (!string.IsNullOrEmpty(instrument) ? x.Instrument.Equals(instrument, StringComparison.CurrentCultureIgnoreCase) : true) &&
+                (period != -1 ? x.Period == period : true)*/
+        }
     }
 }
